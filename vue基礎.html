@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue基礎教學</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <button @click="changeMessage">改變訊息</button>
+
+        <hr>
+        <p v-bind:title="message">將滑鼠放在我上面看見提示訊息（v-bind使用）。</p>
+
+        <hr>
+        <!-- 這邊使用了雙向綁定v-model使input輸入的東西可以同步至使用{{message}}的地方 -->
+        <input v-model="modeltest" placeholder="輸入訊息">
+        <p>輸入的訊息：{{ modeltest }}</p>
+
+        <hr>
+        <ul v-for="item in items" :key="item.id">
+            <li>項目：{{ item.text }}</li>
+            <li>價錢：{{ item.price }}</li>
+        </ul>
+
+        <hr>
+        <!-- 組件的使用 -->
+        <my-component></my-component>
+
+        <!-- 綁定 href 屬性 -->
+        <a :href="url">點擊我</a>
+
+        <!-- 綁定 class 屬性 -->
+        <div :class="classObject">這是一個動態類別的 div</div>
+
+        <!-- 綁定 style 屬性 -->
+        <div :style="styleObject">這是一個動態樣式的 div</div>
+        <input type="text" v-model="items.price">
+        <p>{{final_price}}</p>
+
+        <!-- v-if -->
+        <p v-if="isLoggedIn">歡迎回來Vue！</p>
+        <p v-else>請點擊登入。</p>
+        <button @click="toggleLoginStatus">登入</button>
+
+        <!-- v-if與v-for -->
+        <ul>
+            <li v-for="item in items" v-if="item.isVisible">{{ item.name }}</li>
+        </ul>
+        <button @click="toggleitem">顯示</button>
+    </div>
+    <script src="./vue.js"></script>
+</body>
+
+</html>
